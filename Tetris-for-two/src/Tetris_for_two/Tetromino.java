@@ -1,4 +1,4 @@
-package Tetris;
+package Tetris_for_two;
 
 public abstract class Tetromino {
 	protected int X;
@@ -32,9 +32,9 @@ public abstract class Tetromino {
 		Y++;
 	}
 	
-//	public void moverUp() {
-//		Y--;
-//	}
+    public void moveUp() {
+        Y--;
+    }
 	
 	public int getWidth() {
 		return W;
@@ -52,8 +52,18 @@ public abstract class Tetromino {
 		return Y;
 	}
 	
-	public int getcolorType() {
+	public int[][] getBlock() {
+		return null;
+	}
+	
+	public int getColorType() {
 		return colorType;
+	}
+	
+	public void clone(Tetromino c) {
+		this.X = c.X;
+		this.Y = c.Y;
+		this.R = c.R;
 	}
 }
 
