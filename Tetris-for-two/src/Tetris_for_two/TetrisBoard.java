@@ -59,4 +59,48 @@ public class TetrisBoard {
 
          return true;
      }
+     
+     public void addTetrominos(Tetromino tetromino) {
+         int[][] block = tetromino.getBlock();
+         int w = tetromino.getWidth();
+         int h = tetromino.getHeight();
+         int x = tetromino.getX();
+         int y = tetromino.getY();
+         int type = tetromino.getColorType();
+
+         for (int i = 0; i < h; i++) {
+             for (int j = 0; j < w; j++) {
+                 if (block[i][j] != Tetris.empty) {
+                     board[i + y][j + x] = type;
+                 }
+             }
+         }
+     }
+
+     public int arrange() {
+         int x = 0, y = 0, m = 0;
+         int count = 0;
+         int removedLIne = 0;
+
+         for (y = height-1; y >= 0; y--) {
+             count = 0;
+             for (x = 0; x < 10; x++) {
+                 if (board[y][x] != Tetris.empty) {
+                     count++;
+                 }
+             }
+
+             if (count == width) {
+                 removedLIne++;
+                 for (x = 0; x < width; x++) {
+                     for (m = y; m > 0; m--) {
+                         board[m][x] = board[m - 1][x];
+                     }
+                     board[m][0] = Tetris.empty;
+                 }
+                 y++;
+             }
+         }
+         return removedLIne;
+     }
 }
