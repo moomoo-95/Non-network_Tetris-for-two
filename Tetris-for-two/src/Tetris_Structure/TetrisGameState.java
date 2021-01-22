@@ -1,4 +1,4 @@
-package Tetris_for_two;
+package Tetris_Structure;
 
 public abstract class TetrisGameState {
 	protected ItfaceTetris tetris;
@@ -138,6 +138,79 @@ class TetrisPlayState extends TetrisGameState {
             currentTetromino.preRotate();
             TetrisLog.d("TetrisPlayState.rotate() Not Accept");
         }
+    }
+    
+    public void fixCurrentBlock() {
+        tetrisBoard.addTetrominos(currentTetromino);
+    }
+
+    public void updateBlock() {
+        currentTetromino = nextTetromino;
+        shadowTetromino = TetrominoFactory.clone(currentTetromino);
+        nextTetromino = TetrominoFactory.create();
+    }
+
+    public boolean gameOver() {
+        TetrisLog.d("Check Game over");
+        return !tetrisBoard.isAcceptable(currentTetromino);
+    }
+
+    public void updateBoard() {
+        int removedLine = tetrisBoard.arrange();
+        int point = calculatorScore(removedLine);
+        tetris.addSore(point);
+    }
+
+    private int calculatorScore(int removedLineCount) {
+        if (removedLineCount == 0) {
+            additionalPoint = 1;
+            return 0;
+        }
+
+        int lineScore = 22;
+        if (removedLineCount >= 4) {
+            removedLineCount = 4;
+            lineScore = 888;
+        } else {
+            lineScore *= removedLineCount;
+        }
+        if (additionalPoint > 10000) {
+            additionalPoint = 10000;
+        }
+        additionalPoint <<= removedLineCount;
+        TetrisLog.d("calculatorScore : " + additionalPoint + " : " + removedLineCount);
+        return  (removedLineCount * 10 * additionalPoint + lineScore);
+    }
+
+    public Tetromino getCurrentTetrominos() {
+        return currentTetromino;
+    }
+
+    public Tetromino getNextTetrominos() {
+        return nextTetromino;
+    }
+
+    public Tetromino getShadowTetrominos() {
+        moveShadowBottom();
+        return shadowTetromino;
+    }
+
+    public void moveShadowBottom() {
+        TetrisLog.d("TetrisPlayState.moveShadowBottom()");
+
+        shadowTetromino.clone(currentTetromino);
+
+        while(tetrisBoard.isAcceptable(shadowTetromino)) {
+            shadowTetromino.moveDown();
+        }
+        if (tetrisBoard.isAcceptable(shadowTetromino)) {
+            return;
+        }
+        shadowTetromino.moveUp();
+    }
+
+    public boolean isPlayState() {
+        return true;
     }
 
 }

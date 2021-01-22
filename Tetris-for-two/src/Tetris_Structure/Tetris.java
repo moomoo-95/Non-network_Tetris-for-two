@@ -1,49 +1,6 @@
-package Tetris_for_two;
+package Tetris_Structure;
 
-public interface ItfaceTetris {
-	public void init();
-	public void moveLeft();
-	public void moveRight();
-	public void moveDown();
-	public void rotate();
-	public void moveBottom();
-	
-	public void play();
-	public void pause();
-	public void resume();
-	
-	public int getWidth();
-	public int getHeight();
-	
-	public void register(ItfaceTetrisObserver observer);
-
-    public int[][] getBoard();
-
-    public int getScore();
-
-    public ItfaceTetrisObserver getObserver();
-
-    public Tetromino getCurrentBlock();
-    public Tetromino getNextBlock();
-    public Tetromino getShadowBlock();
-
-    public int addSore(int score);
-
-    public boolean isIdleState();
-    public boolean isGameOverState();
-    public boolean isPlayState();
-    public boolean isPauseState();
-
-    public boolean isEnableShadow();
-    public void enableShadow();
-    public void disableShadow();	
-}
-
-interface ItfaceTetrisObserver{
-	public void update();
-}
-
-class Tetris implements ItfaceTetris {
+public class Tetris implements ItfaceTetris {
 	public static final int empty = 0;
 	
 	private int score;
@@ -62,7 +19,7 @@ class Tetris implements ItfaceTetris {
 	private ItfaceTetrisObserver observer;
 	
 	public Tetris(int width, int height) {
-		TetrisLog.d("Create new Tetris [ " + height + " , " + width);
+		TetrisLog.d("Create new Tetris [ " + height + " , " + width + " ]");
 		
 		board = new TetrisBoard(width, height, this);
 		

@@ -1,4 +1,4 @@
-package Tetris_for_two;
+package Tetris_Structure;
 
 public abstract class Tetromino {
 	protected int X;

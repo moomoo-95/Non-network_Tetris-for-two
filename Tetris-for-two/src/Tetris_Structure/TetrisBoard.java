@@ -1,4 +1,4 @@
-package Tetris_for_two;
+package Tetris_Structure;
 
 public class TetrisBoard {
 	private int width;
