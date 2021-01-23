@@ -12,7 +12,7 @@ import Tetris_Structure.*;
 import Player_Structure.*;
 
 public class TetrisBoardGUI extends JPanel implements ItfaceTetrisObserver {
-	final int BOARD_WIDTH = 15;
+	final int BOARD_WIDTH = 13;
 	final int BOARD_HEIGHT = 20;
 
 
