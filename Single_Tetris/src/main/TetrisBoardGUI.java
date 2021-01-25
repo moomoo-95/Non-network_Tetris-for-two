@@ -11,7 +11,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class TetrisBoardGUI extends JPanel implements ITetrisObserver {
-    final int BOARD_WIDTH = 13;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	final int BOARD_WIDTH = 13;
     final int BOARD_HEIGHT = 20;
 
     IPlayer player;
@@ -25,8 +30,8 @@ public class TetrisBoardGUI extends JPanel implements ITetrisObserver {
 
 
     public TetrisBoardGUI(TetrisMain parent) {
-        playerDraw = new PlayerOneDraw();
-        playerAction = new PlayerOneAction();
+        playerDraw = new PlayerDraw();
+        playerAction = new PlayerAction();
         player = new Player(this, playerDraw, playerAction);
 
         statusbar = parent.getStatusBar();
@@ -61,7 +66,7 @@ public class TetrisBoardGUI extends JPanel implements ITetrisObserver {
         }
 
         graphicsBuffer = screenBuffer.getGraphics();
-        graphicsBuffer.setColor(Color.DARK_GRAY);
+        graphicsBuffer.setColor(new Color(0, 0, 0));
         graphicsBuffer.fillRect(0, 0, width, height);
 
         int boardY = (int) size.getHeight() - BOARD_HEIGHT * blockHeight();

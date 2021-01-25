@@ -4,7 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TetrisMain extends JFrame {
-    JLabel statusbar;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	JLabel statusbar;
 
     public TetrisMain() {
         statusbar = new JLabel("Main Press S to play game");

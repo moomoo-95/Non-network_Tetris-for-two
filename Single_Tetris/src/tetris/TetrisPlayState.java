@@ -3,9 +3,9 @@ package tetris;
 public class TetrisPlayState extends TetrisGameState {
 
 	public int stateNum = 2;
-    private Tetrominos currentTetrominos;
-    private Tetrominos nextTetrominos;
-    private Tetrominos shadowTetrominos;
+    private Tetromino currentTetrominos;
+    private Tetromino nextTetrominos;
+    private Tetromino shadowTetrominos;
     private TetrisBoard tetrisBoard;
     private int additionalPoint = 1;
 
@@ -128,15 +128,15 @@ public class TetrisPlayState extends TetrisGameState {
         return  (removedLineCount * 10 * additionalPoint + lineScore);
     }
 
-    public Tetrominos getCurrentTetrominos() {
+    public Tetromino getCurrentTetrominos() {
         return currentTetrominos;
     }
 
-    public Tetrominos getNextTetrominos() {
+    public Tetromino getNextTetrominos() {
         return nextTetrominos;
     }
 
-    public Tetrominos getShodowTetrominos() {
+    public Tetromino getShodowTetrominos() {
         moveShadowBottom();
         return shadowTetrominos;
     }

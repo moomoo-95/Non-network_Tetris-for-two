@@ -2,34 +2,34 @@ package tetris;
 
 public class TetrominosFactory {
 
-    public static Tetrominos create() {
+    public static Tetromino create() {
        return create ((int) (Math.random() * 7)+1);
     }
 
-    public static Tetrominos create(int type) {
+    public static Tetromino create(int type) {
         switch(type) {
                 case 1:
-                    return new OTetrominos();
+                    return new TetrominosO();
                 case 2:
-                    return new ITetrominos();
+                    return new TetrominoI();
                 case 3:
-                    return new LTetrominos();
+                    return new TetrominoL();
                 case 4:
-                    return new JTetrominos();
+                    return new TetrominoJ();
                 case 5:
-                    return new TTetrominos();
+                    return new TetrominoT();
                 case 6:
-                    return new STetrominos();
+                    return new TetrominoS();
                 case 7:
-                    return new ZTetrominos();
+                    return new TetrominoZ();
                 default:
                     TetrisLog.e("Tetrominos Create Error! Never come to here!");
-                    return new ITetrominos();
+                    return new TetrominoI();
         }
     }
 
-    public static Tetrominos clone(Tetrominos t) {
-        Tetrominos block = create(t.getType());
+    public static Tetromino clone(Tetromino t) {
+        Tetromino block = create(t.getType());
         block.clone(t);
         return block;
     }

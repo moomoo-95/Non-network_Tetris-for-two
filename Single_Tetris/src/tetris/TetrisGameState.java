@@ -50,15 +50,15 @@ public abstract class TetrisGameState {
 
     }
 
-    public Tetrominos getCurrentTetrominos() {
+    public Tetromino getCurrentTetrominos() {
         return null;
     }
 
-    public Tetrominos getNextTetrominos() {
+    public Tetromino getNextTetrominos() {
         return null;
     }
 
-    public Tetrominos getShodowTetrominos() {
+    public Tetromino getShodowTetrominos() {
         return null;
     }
 

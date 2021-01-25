@@ -38,7 +38,7 @@ public class TetrisBoard {
         return this.height;
     }
 
-    public boolean isAcceptable(Tetrominos tetrominos) {
+    public boolean isAcceptable(Tetromino tetrominos) {
         int[][] block = tetrominos.getBlock();
         int w = tetrominos.getWidth();
         int h = tetrominos.getHeight();
@@ -64,7 +64,7 @@ public class TetrisBoard {
         return true;
     }
 
-    public void addTetrominos(Tetrominos tetrominos) {
+    public void addTetrominos(Tetromino tetrominos) {
         int[][] block = tetrominos.getBlock();
         int w = tetrominos.getWidth();
         int h = tetrominos.getHeight();

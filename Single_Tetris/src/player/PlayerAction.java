@@ -2,11 +2,13 @@ package player;
 
 import java.awt.event.KeyEvent;
 
-public class PlayerOneAction implements IPlayerAction {
+import tetris.TetrisLog;
+
+public class PlayerAction implements IPlayerAction {
    IPlayer player = null;
 
     public void onKeyEvent(int keycode) {
-        System.out.println("Tetris (d) Player1 Press key : " + keycode);
+    	TetrisLog.d("PlayerAction.onKeyEvent() = " + keycode);
 
         if (player == null) {
             return;
@@ -14,7 +16,7 @@ public class PlayerOneAction implements IPlayerAction {
 
         if (player.isIdleState()) {
             if (keycode == 's' || keycode == 'S'){
-                System.out.println("Start!");
+            	TetrisLog.d("PlayerAction.onKeyEvent() = Start");
                 player.play();
             }
             return;
@@ -22,6 +24,7 @@ public class PlayerOneAction implements IPlayerAction {
 
         if (player.isGameOverState()) {
             if (keycode == 's' || keycode == 'S'){
+            	TetrisLog.d("PlayerAction.onKeyEvent() = Reset");
                 player.init();
             }
             return;
@@ -29,6 +32,7 @@ public class PlayerOneAction implements IPlayerAction {
 
         if (player.isPauseState()) {
             if (keycode =='p' || keycode == 'P'){
+            	TetrisLog.d("PlayerAction.onKeyEvent() = Pause");
                 player.resume();
             }
             return;

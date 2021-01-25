@@ -21,11 +21,14 @@ public interface ITetris {
 
     public int getScore();
 
+    public int getLevel();
+    public int getSpeed();
+    
     public ITetrisObserver getObserver();
 
-    public Tetrominos getCurrentBlock();
-    public Tetrominos getNextBlock();
-    public Tetrominos getShadowBlock();
+    public Tetromino getCurrentBlock();
+    public Tetromino getNextBlock();
+    public Tetromino getShadowBlock();
 
     public int addSore(int score);
 

@@ -45,10 +45,8 @@ public class Tetris implements ITetris {
         score = 0;
         level = 1;
         setState(playState);
-        getCurrentState();
         gameState.init();
         gameState.update();
-        getCurrentState();
     }
 
     public void pause() {
@@ -95,29 +93,6 @@ public class Tetris implements ITetris {
     public void setState(TetrisGameState state) {
         this.gameState = state;
     }
-    
-    public void getCurrentState() {
-    	switch (this.gameState.stateNum) {
-    	case 0 :
-    		TetrisLog.d("CurrentState : Interface State");
-    		break;
-    	case 1 :
-    		TetrisLog.d("CurrentState : Idle State");
-    		break;
-    	case 2 :
-    		TetrisLog.d("CurrentState : Play State");
-    		break;
-    	case 3 :
-    		TetrisLog.d("CurrentState : Pause State");
-    		break;
-    	case 4 :
-    		TetrisLog.d("CurrentState : GameOver State");
-    		break;
-    	default :
-    		TetrisLog.d("CurrentState : NULL State");
-    		break;
-    	}
-    }
 
     public ITetrisObserver getObserver() {
         return this.observer;
@@ -131,12 +106,16 @@ public class Tetris implements ITetris {
     }
     public int getScore() { return this.score; }
     public int addSore(int score) { return this.score += score; }
+    
+    public int getLevel() { return this.level; }
+    public int getSpeed() { return this.speed; }
+    
     public int[][] getBoard() {
         return board.getBoard();
     }
-    public Tetrominos getCurrentBlock() { return gameState.getCurrentTetrominos(); }
-    public Tetrominos getNextBlock() { return gameState.getNextTetrominos(); }
-    public Tetrominos getShadowBlock() { return gameState.getShodowTetrominos(); }
+    public Tetromino getCurrentBlock() { return gameState.getCurrentTetrominos(); }
+    public Tetromino getNextBlock() { return gameState.getNextTetrominos(); }
+    public Tetromino getShadowBlock() { return gameState.getShodowTetrominos(); }
 
     public boolean isEnableShadow(){ return this.isEnableShadow; }
     public void enableShadow() {
