@@ -1,4 +1,7 @@
-package Tetris_Main;
+package main;
+
+import player.*;
+import tetris.*;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -7,26 +10,23 @@ import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Tetris_Structure.*;
-import Player_Structure.*;
+public class TetrisBoardGUI extends JPanel implements ITetrisObserver {
+    final int BOARD_WIDTH = 13;
+    final int BOARD_HEIGHT = 20;
 
-public class TetrisBoardGUI extends JPanel implements ItfaceTetrisObserver {
-	final int BOARD_WIDTH = 13;
-	final int BOARD_HEIGHT = 20;
-
-
-    ItfacePlayer player;
-    ItfacePlayerDraw playerDraw;
-    ItfacePlayerAction playerAction;
+    IPlayer player;
+    IPlayerDraw playerDraw;
+    IPlayerAction playerAction;
 
     JLabel statusbar;
 
     private Image screenBuffer = null;
     private Graphics graphicsBuffer = null;
-	
+
+
     public TetrisBoardGUI(TetrisMain parent) {
-        playerDraw = new PlayerDraw();
-        playerAction = new PlayerAction();
+        playerDraw = new PlayerOneDraw();
+        playerAction = new PlayerOneAction();
         player = new Player(this, playerDraw, playerAction);
 
         statusbar = parent.getStatusBar();
@@ -38,18 +38,14 @@ public class TetrisBoardGUI extends JPanel implements ItfaceTetrisObserver {
         TetrisLog.d("TetrisBoardGUI.update()");
         repaint();
     }
-    private int blockWidth() { 
-    	return (int) getSize().getWidth() / BOARD_WIDTH; 
-    }
-    private int blockHeight() { 
-    	return (int) getSize().getHeight() / BOARD_HEIGHT; 
-    }
+    private int blockWidth() { return (int) getSize().getWidth() / BOARD_WIDTH; }
+    private int blockHeight() { return (int) getSize().getHeight() / BOARD_HEIGHT; }
 
 
     public void start()
     {
         player.init();
-        statusbar.setText("GUI Press S to start game");
+        statusbar.setText("GUI Press S to start game!");
     }
 
     public void paint(Graphics g)
@@ -80,8 +76,8 @@ public class TetrisBoardGUI extends JPanel implements ItfaceTetrisObserver {
 
     class TetrisKeyAdapter extends KeyAdapter {
         public void keyPressed(KeyEvent e) {
-            int k = e.getKeyCode();
-            player.onPressKey(k);
+            int keycode = e.getKeyCode();
+            player.onPressKey(keycode);
         }
     }
 }

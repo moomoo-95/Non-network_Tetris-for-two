@@ -2,6 +2,7 @@ package Tetris_Structure;
 
 public abstract class TetrisGameState {
 	protected ItfaceTetris tetris;
+	public int stateNum = 0;
 	
 	public TetrisGameState() {}
 	
@@ -53,6 +54,8 @@ public abstract class TetrisGameState {
 }
 
 class TetrisIdleState extends TetrisGameState {
+	public int stateNum = 1;
+	
 	public TetrisIdleState(Tetris tetris) {
 		TetrisLog.d("TetrisIdleState()");
 		this.tetris = tetris;
@@ -64,6 +67,8 @@ class TetrisIdleState extends TetrisGameState {
 }
 
 class TetrisPlayState extends TetrisGameState {
+	public int stateNum = 2;
+	
 	private Tetromino currentTetromino;
 	private Tetromino nextTetromino;
 	private Tetromino shadowTetromino;
@@ -216,6 +221,9 @@ class TetrisPlayState extends TetrisGameState {
 }
 
 class TetrisPauseState extends TetrisGameState {
+
+	public int stateNum = 3;
+	
 	public TetrisPauseState(Tetris tetris) {
 		TetrisLog.d("TetrisPauseState()");
 		this.tetris = tetris;
@@ -227,6 +235,9 @@ class TetrisPauseState extends TetrisGameState {
 }
 
 class TetrisGameOverState extends TetrisGameState {
+
+	public int stateNum = 4;
+	
 	public TetrisGameOverState(Tetris tetris) {
 		TetrisLog.d("TetrisGameOverState()");
 		this.tetris = tetris;

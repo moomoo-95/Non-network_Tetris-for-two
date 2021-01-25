@@ -71,7 +71,6 @@ public class PlayerAction implements ItfacePlayerAction {
         }
 	}
 	
-
     public void setPlayer(ItfacePlayer player) {
         this.player = player;
     }

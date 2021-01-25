@@ -1,44 +1,46 @@
-package Tetris_Structure;
+package tetris;
 
-public class Tetris implements ItfaceTetris {
-	public static final int empty = 0;
-	
-	private int score;
-	private int level;
-	private int speed;
-	private boolean isEnableShadow = true;
+import tetris.TetrisLog;
 
-	private TetrisIdleState idleState;
-	private TetrisPlayState playState;
-	private TetrisPauseState pauseState;
-	private TetrisGameOverState gameOverState;
-	
-	private TetrisBoard board;
-	private TetrisGameState gameState;
-	
-	private ItfaceTetrisObserver observer;
-	
-	public Tetris(int width, int height) {
-		TetrisLog.d("Create new Tetris [ " + height + " , " + width + " ]");
-		
-		board = new TetrisBoard(width, height, this);
-		
-		idleState = new TetrisIdleState(this);
-		playState = new TetrisPlayState(this, this.board);
-		pauseState = new TetrisPauseState(this);
-		gameOverState = new TetrisGameOverState(this);
-	}
-	
-	public void init() {
-		TetrisLog.d("Tetris.Init()");
-		score = 0;
-		level = 1;
-		gameState = idleState;
-		board.init();
-		gameState.update();
-	}
-	
-	public void play() {
+public class Tetris implements ITetris {
+    public static final int EMPTY = 0;
+
+    private int score;
+    private int level;
+    private int speed;
+    private boolean isEnableShadow = true;
+
+    private TetrisIdleState idleState;
+    private TetrisPlayState playState;
+    private TetrisPauseState pauseState;
+    private TetrisGameOverState gameOverState;
+
+    private TetrisBoard board;
+    private TetrisGameState gameState;
+
+    private ITetrisObserver observer;
+
+    public Tetris(int width, int height) {
+        TetrisLog.d("Create new Tetris : " + width + " x " + height);
+
+        board = new TetrisBoard(width, height, this);
+
+        idleState = new TetrisIdleState(this);
+        pauseState = new TetrisPauseState(this);
+        playState = new TetrisPlayState(this, this.board);
+        gameOverState = new TetrisGameOverState(this);
+    }
+
+    public void init() {
+        TetrisLog.d("Tetris.Init()");
+        score = 0;
+        level = 1;
+        gameState = idleState;
+        board.init();
+        gameState.update();
+    }
+
+    public void play() {
         TetrisLog.d("Tetris.play()");
         score = 0;
         level = 1;
@@ -116,8 +118,8 @@ public class Tetris implements ItfaceTetris {
     		break;
     	}
     }
-    
-    public ItfaceTetrisObserver getObserver() {
+
+    public ITetrisObserver getObserver() {
         return this.observer;
     }
 
@@ -132,9 +134,9 @@ public class Tetris implements ItfaceTetris {
     public int[][] getBoard() {
         return board.getBoard();
     }
-    public Tetromino getCurrentBlock() { return gameState.getCurrentTetromino(); }
-    public Tetromino getNextBlock() { return gameState.getNextTetromino(); }
-    public Tetromino getShadowBlock() { return gameState.getShadowTetromino(); }
+    public Tetrominos getCurrentBlock() { return gameState.getCurrentTetrominos(); }
+    public Tetrominos getNextBlock() { return gameState.getNextTetrominos(); }
+    public Tetrominos getShadowBlock() { return gameState.getShodowTetrominos(); }
 
     public boolean isEnableShadow(){ return this.isEnableShadow; }
     public void enableShadow() {
@@ -146,7 +148,7 @@ public class Tetris implements ItfaceTetris {
         gameState.update();
     }
 
-    public void register(ItfaceTetrisObserver observer) {
+    public void register(ITetrisObserver observer) {
         TetrisLog.d("Registered view!");
         this.observer = observer;
     }

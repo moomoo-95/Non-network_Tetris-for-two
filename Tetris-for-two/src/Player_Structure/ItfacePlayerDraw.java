@@ -1,8 +1,8 @@
 package Player_Structure;
 
-import java.awt.Graphics;
+import java.awt.*;
 
-import Tetris_Structure.ItfaceTetris;;
+import Tetris_Structure.ItfaceTetris;
 
 public interface ItfacePlayerDraw {
     public void onDraw(Graphics g, int startX, int startY, int blockwidth, int blockHeight);

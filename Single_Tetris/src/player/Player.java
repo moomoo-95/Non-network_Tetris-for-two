@@ -1,47 +1,45 @@
-package Player_Structure;
+package player;
 
+import main.TetrisBoardGUI;
+import tetris.*;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+public class Player implements IPlayer, ActionListener {
+    final int BOARD_WIDTH = 10;
+    final int BOARD_HEIGHT = 20;
 
-import Tetris_Main.TetrisBoardGUI;
-import Tetris_Structure.*;
+    ITetris tetris;
+    TetrisBoardGUI board;
+    IPlayerDraw playerDraw;
+    IPlayerAction playerAction;
+    Timer tetrisTimer;
 
-public class Player implements ItfacePlayer, ActionListener {
-	final int BOARD_WIDTH = 10;
-	final int BOARD_HEIGHT = 20;
-	
-	ItfaceTetris tetris;
-	TetrisBoardGUI board;
-	ItfacePlayerDraw playerDraw;
-	ItfacePlayerAction playerAction;
-	Timer tetrisTimer;
-	
-	private int gameSpeed = 0;
-	
-	public Player(TetrisBoardGUI board, ItfacePlayerDraw playerDraw, ItfacePlayerAction playerAction) {
-		this.board = board;
-		
-		this.tetris = new Tetris(BOARD_WIDTH, BOARD_HEIGHT);
-		this.tetris.register(this.board);
-		this.tetris.init();
-		
-		this.playerDraw = playerDraw;
-		this.playerDraw.setTetris(this.tetris);
-		
-		this.playerAction = playerAction;
-		this.playerAction.setPlayer(this);
-		
-		this.tetrisTimer = new Timer(0, this);
-	}
-	
-	public void onDraw(Graphics g, int startX, int startY, int blockWidth, int blockHeight) {
+    private int     gameSpeed = 0;
+
+    public Player(TetrisBoardGUI board, IPlayerDraw playerDraw, IPlayerAction playerAction) {
+        this.board = board;
+
+        this.tetris = new Tetris(BOARD_WIDTH, BOARD_HEIGHT);
+        this.tetris.register(this.board);
+        this.tetris.init();
+
+        this.playerDraw = playerDraw;
+        this.playerDraw.setTetris(this.tetris);
+
+        this.playerAction = playerAction;
+        this.playerAction.setPlayer(this);
+
+        this.tetrisTimer = new Timer(0, this);
+    }
+
+    public void onDraw(Graphics g, int startX, int startY, int blockWidth, int blockHeight) {
         playerDraw.onDraw(g, startX, startY, blockWidth, blockHeight);
     }
-	
-	public void onPressKey(int k) {
+
+    public void onPressKey(int k) {
         playerAction.onKeyEvent(k);
     }
 
@@ -101,18 +99,12 @@ public class Player implements ItfacePlayer, ActionListener {
         return tetris.isPauseState();
     }
 
-    public boolean isEnableShadow() { 
-    	return tetris.isEnableShadow(); 
-    }
-    public void enableShadow() { 
-    	tetris.enableShadow(); 
-   	}
-    public void disableShadow() { 
-    	tetris.disableShadow(); 
-   	}
-    
+    public boolean isEnableShadow() { return tetris.isEnableShadow(); }
+    public void enableShadow() { tetris.enableShadow(); }
+    public void disableShadow() { tetris.disableShadow(); }
+
     public void actionPerformed(ActionEvent e) {
-        TetrisLog.d("Player.actionPerformed() There is event");
+    	TetrisLog.d("Player.actionPerformed()");
         if (tetris == null ) {
             return;
         }
@@ -124,5 +116,4 @@ public class Player implements ItfacePlayer, ActionListener {
             tetrisTimer.stop();
         }
     }
-	
 }

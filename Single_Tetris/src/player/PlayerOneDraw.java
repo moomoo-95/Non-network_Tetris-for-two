@@ -1,17 +1,20 @@
-package Player_Structure;
+package player;
+
+import tetris.ITetris;
+import tetris.Tetris;
+import tetris.Tetrominos;
 
 import java.awt.*;
 
-import Tetris_Structure.*;
+public class PlayerOneDraw implements IPlayerDraw {
+    ITetris tetris;
 
-public class PlayerDraw implements ItfacePlayerDraw {
-	ItfaceTetris tetris;
-	
-	public void setTetris (ItfaceTetris tetris) {
-		this.tetris = tetris;
-	}
-	
-	public void onDraw(Graphics g, int startX, int startY, int blockWidth, int blockHeight) {
+    public void setTetris(ITetris tetris) {
+        this.tetris = tetris;
+    }
+
+    public void onDraw(Graphics g, int startX, int startY, int blockWidth, int blockHeight) {
+        // Draw board
         int i = 0, j = 0;
 
         int[][] board = tetris.getBoard();
@@ -24,17 +27,17 @@ public class PlayerDraw implements ItfacePlayerDraw {
         }
 
         if (tetris.isPlayState()) {
-            TetrisLog.d("PlayerDraw.onDraw()");
+            System.out.println("Tetris (d) PlayerOne DrawBlock!");
 
             if (tetris.isEnableShadow()) {
-                Tetromino shadowBlock = tetris.getShadowBlock();
+                Tetrominos shadowBlock = tetris.getShadowBlock();
                 drawShadowBlock(g, shadowBlock, startX, startY, blockWidth, blockHeight);
             }
 
-            Tetromino currentBlock = tetris.getCurrentBlock();
+            Tetrominos currentBlock = tetris.getCurrentBlock();
             drawBlock(g, currentBlock, startX, startY, blockWidth, blockHeight);
 
-            Tetromino nextblock = tetris.getNextBlock();
+            Tetrominos nextblock = tetris.getNextBlock();
             int nextBlockX = startX + blockWidth * (tetris.getWidth()-1);
             int nextBlockY = startY + blockHeight * 4;
 
@@ -49,18 +52,18 @@ public class PlayerDraw implements ItfacePlayerDraw {
     }
 
 
-    private void drawBlock(Graphics g, Tetromino block, int startX, int startY, int blockWidth, int blockHeight) {
+    private void drawBlock(Graphics g, Tetrominos block, int startX, int startY, int blockWidth, int blockHeight) {
         int i = 0, j = 0;
         int[][] ablock = block.getBlock();
         int sw = block.getWidth();
         int sh = block.getHeight();
         int sx = block.getX();
         int sy = block.getY();
-        int sType = block.getColorType();
+        int sType = block.getType();
 
         for (i = 0; i < sw; i++) {
             for (j = 0; j < sh; j++) {
-                if (ablock[j][i] != Tetris.empty) {
+                if (ablock[j][i] != Tetris.EMPTY) {
                     drawRectangle(g, startX + (sx + i) * blockWidth,
                             startY + (sy + j) * blockHeight, sType, blockWidth, blockHeight);
                 }
@@ -68,18 +71,18 @@ public class PlayerDraw implements ItfacePlayerDraw {
         }
     }
 
-    private void drawShadowBlock(Graphics g, Tetromino block, int startX, int startY, int blockWidth, int blockHeight) {
+    private void drawShadowBlock(Graphics g, Tetrominos block, int startX, int startY, int blockWidth, int blockHeight) {
         int i = 0, j = 0;
         int[][] ablock = block.getBlock();
         int sw = block.getWidth();
         int sh = block.getHeight();
         int sx = block.getX();
         int sy = block.getY();
-        int sType = block.getColorType();
+        int sType = block.getType();
 
         for (i = 0; i < sw; i++) {
             for (j = 0; j < sh; j++) {
-                if (ablock[j][i] != Tetris.empty) {
+                if (ablock[j][i] != Tetris.EMPTY) {
                     drawShadowRectangle(g, startX + (sx + i) * blockWidth,
                             startY + (sy + j) * blockHeight, sType, blockWidth, blockHeight);
                 }
@@ -134,4 +137,5 @@ public class PlayerDraw implements ItfacePlayerDraw {
         g.drawLine(x + blockWidth - 1, y + blockHeight - 1,
                 x + blockWidth - 1, y + 1);
     }
+
 }

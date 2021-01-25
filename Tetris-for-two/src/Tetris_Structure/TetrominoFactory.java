@@ -2,23 +2,23 @@ package Tetris_Structure;
 
 public class TetrominoFactory {
 	public static Tetromino create() {
-		return create((int) (Math.random() * 7));
+		return create((int) (Math.random() * 7)+1);
 	}
 	public static Tetromino create(int type) {
 		switch (type) {
-		case 0 :
-			return new ITetromino();
 		case 1 :
-			return new JTetromino();
+			return new ITetromino();
 		case 2 :
-			return new LTetromino();
+			return new JTetromino();
 		case 3 :
-			return new TTetromino();
+			return new LTetromino();
 		case 4 :
-			return new OTetromino();
+			return new TTetromino();
 		case 5 :
-			return new STetromino();
+			return new OTetromino();
 		case 6 :
+			return new STetromino();
+		case 7 :
 			return new ZTetromino();
 		default :
 			TetrisLog.e("Tetromino Create Error");

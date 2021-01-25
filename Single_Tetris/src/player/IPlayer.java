@@ -1,8 +1,8 @@
-package Player_Structure;
+package player;
 
 import java.awt.*;
 
-public interface ItfacePlayer {
+public interface IPlayer {
     public void onDraw(Graphics g, int startX, int startY, int blockwidth, int blockHeight);
     public void onPressKey(int k);
 
@@ -24,6 +24,4 @@ public interface ItfacePlayer {
     public boolean isEnableShadow();
     public void enableShadow();
     public void disableShadow();
-
 }
-
