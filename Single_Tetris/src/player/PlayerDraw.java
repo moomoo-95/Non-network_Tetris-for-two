@@ -45,13 +45,15 @@ public class PlayerDraw implements IPlayerDraw {
             drawBlock(g, nextblock, nextBlockX, nextBlockY, blockWidth/2, blockHeight/2);
         }
 
-        int scorePointX =  startX + blockWidth * tetris.getWidth() + 5;
-        int scorePointY =  startY + blockHeight * 8;
+        int PointX =  startX + blockWidth * tetris.getWidth() + 5;
+//        int PointY =  startY + blockHeight * 8;
+        int PointY =  startY + 15;
+        
         g.setColor(new Color(255, 255, 255));
         g.setFont(new Font("Purisa", Font.PLAIN, 14));
-        g.drawString("Score : " + String.valueOf(tetris.getScore()), scorePointX, scorePointY);
-        g.drawString("Level : " + String.valueOf(tetris.getLevel()), scorePointX, scorePointY + 20);
-        g.drawString("Speed : " + String.valueOf(tetris.getLevel()), scorePointX, scorePointY + 40);
+        g.drawString("Score  : " + String.valueOf(tetris.getScore()), PointX, PointY);
+        g.drawString("Level   : " + String.valueOf(tetris.getLevel()), PointX, PointY + 20);
+        g.drawString("Speed : " + String.valueOf(tetris.getSpeed()), PointX, PointY + 40);
     }
 
 
