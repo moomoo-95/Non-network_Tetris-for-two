@@ -23,7 +23,7 @@ public class Tetris implements ITetris {
     public Tetris(int width, int height) {
         TetrisLog.d("Create new Tetris : " + width + " x " + height);
 
-        board = new TetrisBoard(width, height, this);
+        board = new TetrisBoard(width, height);		//, this);
 
         idleState = new TetrisIdleState(this);
         pauseState = new TetrisPauseState(this);

@@ -21,6 +21,7 @@ public class TetrisMain extends JFrame {
         tetrisBoardGui.start();
 
         setSize(390, 630);
+        setResizable(false);
         setTitle("moomoo95_Single_Tetris");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }

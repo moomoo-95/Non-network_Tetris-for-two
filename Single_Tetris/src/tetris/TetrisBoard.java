@@ -3,16 +3,13 @@ package tetris;
 public class TetrisBoard {
     private int width;
     private int height;
-    private ITetris tetris;
+//    private ITetris tetris;
     private int[][] board;
 
-    /**
-     * Default constructor
-     */
-    public TetrisBoard(int width, int height, Tetris tetris) {
+    public TetrisBoard(int width, int height) { 	//, Tetris tetris) {
         this.width = width;
         this.height = height;
-        this.tetris = tetris;
+//        this.tetris = tetris;
 
         board = new int[this.height][this.width];
         init();
