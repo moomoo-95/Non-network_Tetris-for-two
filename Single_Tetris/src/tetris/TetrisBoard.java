@@ -35,15 +35,15 @@ public class TetrisBoard {
         return this.height;
     }
 
-    public boolean isAcceptable(Tetromino tetrominos) {
-        int[][] block = tetrominos.getBlock();
-        int w = tetrominos.getWidth();
-        int h = tetrominos.getHeight();
-        int x = tetrominos.getX();
-        int y = tetrominos.getY();
+    public boolean isAcceptable(Tetromino tetromino) {
+        int[][] block = tetromino.getBlock();
+        int w = tetromino.getWidth();
+        int h = tetromino.getHeight();
+        int x = tetromino.getX();
+        int y = tetromino.getY();
 
-        TetrisLog.d("W : " + w + " H : " + h);
-        TetrisLog.d("X : " + x + " Y : " + y);
+//        TetrisLog.d("W : " + w + " H : " + h);
+//        TetrisLog.d("X : " + x + " Y : " + y);
 
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
@@ -61,13 +61,13 @@ public class TetrisBoard {
         return true;
     }
 
-    public void addTetrominos(Tetromino tetrominos) {
-        int[][] block = tetrominos.getBlock();
-        int w = tetrominos.getWidth();
-        int h = tetrominos.getHeight();
-        int x = tetrominos.getX();
-        int y = tetrominos.getY();
-        int type = tetrominos.getType();
+    public void addTetromino(Tetromino tetromino) {
+        int[][] block = tetromino.getBlock();
+        int w = tetromino.getWidth();
+        int h = tetromino.getHeight();
+        int x = tetromino.getX();
+        int y = tetromino.getY();
+        int type = tetromino.getType();
 
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {

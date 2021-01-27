@@ -17,7 +17,7 @@ public class Player implements IPlayer, ActionListener {
     IPlayerAction playerAction;
     Timer tetrisTimer;
 
-    private int     gameSpeed = 0;
+    private int gameSpeed = 0;
 
     public Player(TetrisBoardGUI board, IPlayerDraw playerDraw, IPlayerAction playerAction) {
         this.board = board;
@@ -110,7 +110,8 @@ public class Player implements IPlayer, ActionListener {
         }
         if (tetris.isPlayState()) {
             tetris.moveDown();
-            gameSpeed = 700 - (tetris.getScore() / 100000);
+            gameSpeed = 500 - (tetris.getScore() / 100);
+            if(gameSpeed < 1) { gameSpeed = 1; }
             tetrisTimer.setDelay(gameSpeed);
         } else if (tetris.isGameOverState()) {
             tetrisTimer.stop();

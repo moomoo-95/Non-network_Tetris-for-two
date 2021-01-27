@@ -109,8 +109,6 @@ class TetrisPlayState extends TetrisGameState {
         if (tetrisBoard.isAcceptable(currentTetrominos) == false) {
             currentTetrominos.moveRight();
             TetrisLog.d("Not Accept");
-        } else {
-            TetrisLog.d("Accept");
         }
     }
 
@@ -120,8 +118,6 @@ class TetrisPlayState extends TetrisGameState {
         if (tetrisBoard.isAcceptable(currentTetrominos) == false) {
             currentTetrominos.moveLeft();
             TetrisLog.d("Not Accept");
-        } else {
-            TetrisLog.d("Accept");
         }
     }
 
@@ -131,8 +127,6 @@ class TetrisPlayState extends TetrisGameState {
         if (tetrisBoard.isAcceptable(currentTetrominos) == false) {
             currentTetrominos.preRotate();
             TetrisLog.d("Not Accept");
-        } else {
-            TetrisLog.d("Accept");
         }
     }
 
@@ -165,7 +159,7 @@ class TetrisPlayState extends TetrisGameState {
 
 
     public void fixCurrentBlock() {
-        tetrisBoard.addTetrominos(currentTetrominos);
+        tetrisBoard.addTetromino(currentTetrominos);
     }
 
     public void updateBlock() {
@@ -183,6 +177,7 @@ class TetrisPlayState extends TetrisGameState {
         int removedLine = tetrisBoard.arrange();
         int point = calculatorScore(removedLine);
         tetris.addSore(point);
+        tetris.setLevel();
     }
 
     private int calculatorScore(int removedLineCount) {
@@ -191,19 +186,14 @@ class TetrisPlayState extends TetrisGameState {
             return 0;
         }
 
-        int lineScore = 22;
-        if (removedLineCount >= 4) {
-            removedLineCount = 4;
-            lineScore = 888;
-        } else {
-            lineScore *= removedLineCount;
-        }
+        int lineScore = 12 * removedLineCount;
+
         if (additionalPoint > 10000) {
             additionalPoint = 10000;
         }
         additionalPoint <<= removedLineCount;
-        TetrisLog.d("calculatorScore : " + additionalPoint + " : " + removedLineCount);
-        return  (removedLineCount * 10 * additionalPoint + lineScore);
+        TetrisLog.d("calculatorScore : " + tetris.getLevel() + " * 10 * " + additionalPoint + " + " + lineScore);
+        return  (tetris.getLevel() * 10 * additionalPoint + lineScore);
     }
 
     public Tetromino getCurrentTetrominos() {

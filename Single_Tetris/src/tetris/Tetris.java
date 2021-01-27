@@ -7,7 +7,6 @@ public class Tetris implements ITetris {
 
     private int score;
     private int level;
-    private int speed;
     private boolean isEnableShadow = true;
 
     private TetrisIdleState idleState;
@@ -108,7 +107,7 @@ public class Tetris implements ITetris {
     public int addSore(int score) { return this.score += score; }
     
     public int getLevel() { return this.level; }
-    public int getSpeed() { return this.speed; }
+    public void setLevel() { this.level = 1 + this.score / 300; }
     
     public int[][] getBoard() {
         return board.getBoard();

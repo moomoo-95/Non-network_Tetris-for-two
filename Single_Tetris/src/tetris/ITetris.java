@@ -22,7 +22,7 @@ public interface ITetris {
     public int getScore();
 
     public int getLevel();
-    public int getSpeed();
+    public void setLevel();
     
     public ITetrisObserver getObserver();
 
