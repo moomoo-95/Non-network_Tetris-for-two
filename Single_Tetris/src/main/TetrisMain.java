@@ -3,6 +3,7 @@ package main;
 import javax.swing.*;
 
 import javafx.geometry.Orientation;
+import tetris.TetrisRank;
 
 import java.awt.*;
 
@@ -39,6 +40,13 @@ public class TetrisMain extends JFrame {
     }
     
     public static void main(String[] args) {
+    	
+    	TetrisRank TR = new TetrisRank();
+    	TR.FileWrite();
+    	String[] str = TR.FileRead();
+    	for (int i = 0; i < str.length; i++) {
+    		System.out.println(str[i]);
+    	}
         TetrisMain tetrisGui = new TetrisMain();
         tetrisGui.setLocationRelativeTo(null);
         tetrisGui.setVisible(true);

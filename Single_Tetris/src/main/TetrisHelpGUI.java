@@ -1,10 +1,6 @@
 package main;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-
+import java.awt.*;
 import javax.swing.*;
 
 public class TetrisHelpGUI extends JPanel{
@@ -17,8 +13,7 @@ public class TetrisHelpGUI extends JPanel{
 			+ "<br> ¡æ : Right<br> ¡ç : Left<br> ¡é : Down<br> Space Bar : Pull Down</HTML>";
 	
     public TetrisHelpGUI(TetrisMain parent) {
-    	setLayout(new GridBagLayout());
-
+    	setLayout(new FlowLayout());
 
         setSize(300, 800);
         
@@ -31,18 +26,11 @@ public class TetrisHelpGUI extends JPanel{
     	help.setBackground(new Color(51, 51, 51));
     	help.setForeground(new Color(255, 255, 255));
     	help.setFont(new Font("Purisa", Font.ITALIC, 14));
-    	help.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 0));
+    	help.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));
+    	help.setPreferredSize(new Dimension(240, 200));
     	
-    	add(help, setLocation(gbc, 1.0, 1.0, 0, 0));
-        add(new JLabel("Rank"), setLocation(gbc, 1.0, 1.0, 0, 1));
+    	add(help);
+        add(new JLabel("Rank Layout"));
         
-    }
-
-    public GridBagConstraints setLocation(GridBagConstraints gbc, double wx, double wy, int sx, int sy) {
-    	gbc.weightx = wx;
-    	gbc.weighty = wy;
-    	gbc.gridx = sx;
-    	gbc.gridy= sy;
-    	return gbc;
     }
 }
