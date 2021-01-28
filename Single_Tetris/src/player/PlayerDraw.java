@@ -50,7 +50,7 @@ public class PlayerDraw implements IPlayerDraw {
         int PointY =  startY + 15;
         
         g.setColor(new Color(255, 255, 255));
-        g.setFont(new Font("Purisa", Font.PLAIN, 14));
+        g.setFont(new Font("Purisa", Font.ITALIC, 14));
         g.drawString("Score  : " + String.valueOf(tetris.getScore()), PointX, PointY);
         g.drawString("Level   : " + String.valueOf(tetris.getLevel()), PointX, PointY + 20);
     }

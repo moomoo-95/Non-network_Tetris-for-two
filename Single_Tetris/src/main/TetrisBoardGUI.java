@@ -7,7 +7,6 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class TetrisBoardGUI extends JPanel implements ITetrisObserver {
@@ -16,14 +15,13 @@ public class TetrisBoardGUI extends JPanel implements ITetrisObserver {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	final int BOARD_WIDTH = 13;
+	final int BOARD_WIDTH = 15;
     final int BOARD_HEIGHT = 20;
 
     IPlayer player;
     IPlayerDraw playerDraw;
     IPlayerAction playerAction;
 
-    JLabel statusbar;
 
     private Image screenBuffer = null;
     private Graphics graphicsBuffer = null;
@@ -34,7 +32,7 @@ public class TetrisBoardGUI extends JPanel implements ITetrisObserver {
         playerAction = new PlayerAction();
         player = new Player(this, playerDraw, playerAction);
 
-        statusbar = parent.getStatusBar();
+        setSize(600, 800);
         setFocusable(true);
         addKeyListener(new TetrisKeyAdapter());
     }
@@ -50,7 +48,6 @@ public class TetrisBoardGUI extends JPanel implements ITetrisObserver {
     public void start()
     {
         player.init();
-        statusbar.setText("GUI Press S to start game!");
     }
 
     public void paint(Graphics g)
