@@ -13,7 +13,8 @@ public class TetrisHelpGUI extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	String text = "<HTML>HELP<br>S : Start / Reset Game<br>P : Pause / Restart Game<br> ¡è¡æ¡ç¡é</HTML>";
+	String text = "<HTML>HELP<br> S : Start / Reset Game<br> P : Pause / Restart Game<br> ¡è : Rotation"
+			+ "<br> ¡æ : Right<br> ¡ç : Left<br> ¡é : Down<br> Space Bar : Pull Down</HTML>";
 	
     public TetrisHelpGUI(TetrisMain parent) {
     	setLayout(new GridBagLayout());
@@ -30,6 +31,7 @@ public class TetrisHelpGUI extends JPanel{
     	help.setBackground(new Color(51, 51, 51));
     	help.setForeground(new Color(255, 255, 255));
     	help.setFont(new Font("Purisa", Font.ITALIC, 14));
+    	help.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 0));
     	
     	add(help, setLocation(gbc, 1.0, 1.0, 0, 0));
         add(new JLabel("Rank"), setLocation(gbc, 1.0, 1.0, 0, 1));

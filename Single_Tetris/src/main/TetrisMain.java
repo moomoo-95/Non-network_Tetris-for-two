@@ -1,6 +1,9 @@
 package main;
 
 import javax.swing.*;
+
+import javafx.geometry.Orientation;
+
 import java.awt.*;
 
 public class TetrisMain extends JFrame {
@@ -11,36 +14,28 @@ public class TetrisMain extends JFrame {
 
 
     public TetrisMain() {
-    	
-    	setLayout(new GridBagLayout());
+    	setLayout(new FlowLayout());
 
-        setSize(900, 800);
+        setSize(730, 650);
         
     	GridBagConstraints gbc = new GridBagConstraints();
     	gbc.fill = GridBagConstraints.BOTH;
     	
     	
         TetrisBoardGUI tetrisBoardGui  = new TetrisBoardGUI(this);
-        TetrisHelpGUI tetrisHelpGui = new TetrisHelpGUI(this);
+        tetrisBoardGui.setPreferredSize(new Dimension(450, 600));
         
-    	add(tetrisBoardGui, setLocation(gbc, 0.6, 1.0, 0, 0, 2, 1));
-        add(tetrisHelpGui, setLocation(gbc, 0.3, 1.0, 3, 0, 1, 1));
+        TetrisHelpGUI tetrisHelpGui = new TetrisHelpGUI(this);
+        tetrisHelpGui.setPreferredSize(new Dimension(250, 600));
+        
+        add(tetrisBoardGui);
+        add(tetrisHelpGui);
         
         tetrisBoardGui.start();
 
         setResizable(false);
         setTitle("moomoo95_Single_Tetris");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-    }
-    
-    public GridBagConstraints setLocation(GridBagConstraints gbc, double wx, double wy, int sx, int sy, int cx, int cy) {
-    	gbc.weightx = wx;
-    	gbc.weighty = wy;
-    	gbc.gridx = sx;
-    	gbc.gridy = sy;
-    	gbc.gridwidth = cx;
-    	gbc.gridheight = cy;
-    	return gbc;
     }
     
     public static void main(String[] args) {
