@@ -39,3 +39,16 @@ public class TetrisRank {
 		return readRank;
 	}
 }
+
+class RankRecord{
+	private int count;
+	private int[] score;
+	private String[] name;
+	
+	
+	public RankRecord(int n) {
+		this.count = n;
+		this.score = new int[n];
+		this.name = new String[n];
+	}
+}
