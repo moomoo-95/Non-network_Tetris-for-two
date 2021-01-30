@@ -14,7 +14,7 @@ public class TetrisRank {
 		try {
 			FileWriter fw = new FileWriter(path, true);
 			BufferedWriter bw = new BufferedWriter(fw);
-			String newRank = "2 TES 2700 9";
+			String newRank = "TES 2700 9";
 			bw.write(newRank);
 			bw.newLine();
 			bw.flush();
@@ -42,13 +42,15 @@ public class TetrisRank {
 
 class RankRecord{
 	private int count;
-	private int[] score;
 	private String[] name;
+	private int[] level;
+	private int[] score;
 	
 	
 	public RankRecord(int n) {
 		this.count = n;
-		this.score = new int[n];
 		this.name = new String[n];
+		this.level = new int[n];
+		this.score = new int[n];
 	}
 }
